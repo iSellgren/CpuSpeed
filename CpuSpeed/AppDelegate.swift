@@ -17,10 +17,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         init_c()
         _ = Timer.scheduledTimer(withTimeInterval: 0.7, repeats: true, block:
         { timer in
-//            var TestString = String(shell("sh /Users/fredriksellgren/CpuSpeed/CpuSpeed/Script.sh"))
-//            TestString.remove(at: TestString.index(before: TestString.endIndex))
-//            TestString.remove(at: TestString.index(before: TestString.endIndex))
-//            _ = Int(Float(TestString)!)
             let freqInt = String(frequency())
             let tempInt = String(temperature())
             let powerInt = String(power())
@@ -32,7 +28,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
         destroy();
     }
     func constructMenu() {

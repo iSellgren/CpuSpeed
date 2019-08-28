@@ -35,7 +35,6 @@ float frequency(void) {
             
             // Frequency
             if (funcID == MSR_FUNC_FREQ) {
-                StopLog(); // causes a sample to be read();
                 return(data[0]/1000);
             }
         }
@@ -45,26 +44,19 @@ float frequency(void) {
 }
 
 float temperature(void) {
-    //IntelEnergyLibInitialize();
     StartLog("/tmp/PowerGadgetLog.csv"); // causes a sample to be read
-    
     int numMsrs = 0;
     GetNumMsrs(&numMsrs);
-    
     for (int i = 0; i < 10; i++) {
-        
         ReadSample();
-        
         for (int j = 0; j < numMsrs; j++) {
             int funcID;
             GetMsrFunc(j, &funcID);
-            
             int nData;
             double data[3];
             GetPowerData(0, j, data, &nData);
             //temperature
             if (funcID == MSR_FUNC_TEMP) {
-                StopLog(); // causes a sample to be read();
                 return(data[0]);
             }
         }
@@ -85,7 +77,6 @@ float power(void) {
         for (int j = 0; j < numMsrs; j++) {
             int funcID;
             GetMsrFunc(j, &funcID);
-            
             int nData;
             double data[3];
             GetPowerData(0, j, data, &nData);
